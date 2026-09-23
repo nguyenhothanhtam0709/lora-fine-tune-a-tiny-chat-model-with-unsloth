@@ -213,6 +213,17 @@ def build_chat_prompt(tokenizer, instruction):
                                             add_generation_prompt=True,
                                             tokenize=False)
 
-# Step 20 - generate_reply (not yet solved)
-# TODO: implement
+# Step 20 - generate_reply
+def generate_reply(model, tokenizer, prompt, max_new_tokens=32):
+    """Greedy-generate a reply for `prompt` and return the decoded text."""
+    # tokenize prompt, run model.generate with do_sample=False, decode new tokens only
+    device = model.get_input_embeddings().weight.device
+    inputs = tokenizer(prompt, return_tensors="pt").to(device)
+    output_ids = model.generate(
+        **inputs,
+        max_new_tokens=max_new_tokens,
+        do_sample=False # Greedy decoding (do_sample=False) always picks the argmax logit, so the same prompt yields the same reply.
+    )
+    new_tokens = output_ids[0, inputs["input_ids"].shape[1]:]
+    return tokenizer.decode(new_tokens, skip_special_tokens=True)
 
