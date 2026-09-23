@@ -74,8 +74,36 @@ def trainable_fraction(trainable_count, total_count):
     # return the fraction of parameters that are trainable.
     return trainable_count / total_count
 
-# Step 9 - build_instruction_examples (not yet solved)
-# TODO: implement
+# Step 9 - build_instruction_examples
+def build_instruction_examples():
+    """Return a small list of {'instruction', 'response'} dicts for SFT."""
+    # return a tiny hand-written list of instruction/response example dicts.
+    return [
+    {
+        "instruction": "What is machine learning?",
+        "response": "Machine learning is a field of AI where models learn patterns from data to make predictions or decisions."
+    },
+    {
+        "instruction": "What is supervised learning?",
+        "response": "Supervised learning trains a model using labeled examples, where each input is paired with a target output."
+    },
+    {
+        "instruction": "What is overfitting?",
+        "response": "Overfitting occurs when a model learns the training data too closely and performs poorly on unseen data."
+    },
+    {
+        "instruction": "What is a neural network?",
+        "response": "A neural network is a model composed of interconnected layers of artificial neurons that learn representations from data."
+    },
+    {
+        "instruction": "What is LoRA?",
+        "response": "LoRA is a parameter-efficient fine-tuning method that learns low-rank updates while keeping the original model weights frozen."
+    },
+    {
+        "instruction": "Why use LoRA for fine-tuning?",
+        "response": "LoRA reduces the number of trainable parameters, which lowers memory usage and makes fine-tuning large models more efficient."
+    },
+]
 
 # Step 10 - format_instruction_example (not yet solved)
 # TODO: implement
