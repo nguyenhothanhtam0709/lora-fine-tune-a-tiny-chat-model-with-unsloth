@@ -180,8 +180,20 @@ def build_sft_trainer(model, tokenizer, dataset, training_args, max_seq_length=2
         processing_class=tokenizer
     )
 
-# Step 17 - run_sft_training (not yet solved)
-# TODO: implement
+# Step 17 - run_sft_training
+def run_sft_training(trainer):
+    """Run a few SFT steps and return the final training loss as a float."""
+    # drive the trainer through its short optimization run and return the final loss
+    trainer.train()
+    
+    # log_history holds per-step logs; the last entry is the train summary
+    # (which has 'train_loss', not 'loss'), so search backwards for 'loss'.
+    for entry in reversed(trainer.state.log_history):
+        if "loss" in entry:
+            return float(entry["loss"])
+
+    # Fallback: nothing was logged (e.g. logging_steps > max_steps)
+    return float(out.training_loss)
 
 # Step 18 - switch_to_inference_mode (not yet solved)
 # TODO: implement
