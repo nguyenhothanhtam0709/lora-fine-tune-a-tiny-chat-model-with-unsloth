@@ -10,30 +10,6 @@ from model import *  # noqa: F401, F403 (pulls in your solution functions)
 """Scaffold: LoRA fine-tune a tiny 4-bit Qwen2.5 chat model with Unsloth."""
 import torch
 
-from solution import (
-    load_base_model_and_tokenizer,
-    count_total_parameters,
-    is_model_4bit_quantized,
-    ensure_pad_token,
-    get_lora_target_modules,
-    attach_lora_adapters,
-    count_trainable_parameters,
-    trainable_fraction,
-    build_instruction_examples,
-    format_instruction_example,
-    format_all_examples,
-    build_text_dataset,
-    tokenize_text,
-    count_tokens,
-    build_training_arguments,
-    build_sft_trainer,
-    run_sft_training,
-    switch_to_inference_mode,
-    build_chat_prompt,
-    generate_reply,
-)
-
-
 def main():
     torch.manual_seed(0)
 
